@@ -10,7 +10,7 @@ export const fetchUserProfile = (params) => {
     });
     axios({
       method: 'GET',
-      url: endpoints.user,
+      url: `${baseUrl}/user`,
     }).then((response) => { 
       dispatch({
         type: types.USER_FETCH_PROFILE_SUCCESS,
@@ -36,7 +36,7 @@ export const updateUserProfile = (params) => {
       });
       axios({
         method: 'PUT',
-        url: endpoints.user,
+        url:  `${baseUrl}/user`,
         data: params
       }).then((response) => { 
         dispatch({

@@ -9,6 +9,14 @@ import {
   stockProducts,
   salesProducts
 } from './core/reducers/products'
+import {
+  insights,
+  dailySales,
+  emailSubs,
+  completedTasks,
+  tasks,
+  employeeStats
+} from './core/reducers/dash'
 
 const appReducer = combineReducers({
   userProfile,
@@ -16,6 +24,12 @@ const appReducer = combineReducers({
   shippedProducts,
   stockProducts,
   salesProducts,
+  insights,
+  dailySales,
+  emailSubs,
+  completedTasks,
+  tasks,
+  employeeStats,
   
 });
 

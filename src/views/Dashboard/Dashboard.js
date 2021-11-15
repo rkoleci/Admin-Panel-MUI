@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 // react plugin for creating charts
 import ChartistGraph from "react-chartist";
 // @material-ui/core
 import { makeStyles } from "@material-ui/core/styles";
+import { connect, useSelector } from 'react-redux'
 import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
 import Store from "@material-ui/icons/Store";
@@ -38,11 +39,22 @@ import {
 } from "variables/charts.js";
 
 import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js";
+import { fetchInsights, fetchDailySales, fetchEmailSubs, fetchCompletedTasks, fetchTasks, fetchEmployeeStats } from "core/actions/dash";
 
 const useStyles = makeStyles(styles);
 
-export default function Dashboard() {
+export default function Dashboard({ fetchInsights, fetchDailySales, fetchEmailSubs, fetchCompletedTasks, fetchTasks, fetchEmployeeStats }) {
   const classes = useStyles();
+
+  useEffect(() => {
+    fetchInsights()
+    fetchDailySales()
+    fetchEmailSubs()
+    fetchCompletedTasks()
+    fetchTasks()
+    fetchEmployeeStats()
+  }, [])
+
   return (
     <div>
       <GridContainer>
@@ -263,3 +275,16 @@ export default function Dashboard() {
     </div>
   );
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchInsights: p => dispatch(fetchInsights(p)),
+    fetchDailySales: p => dispatch(fetchDailySales(p)),
+    fetchEmailSubs: p => dispatch(fetchEmailSubs(p)),
+    fetchCompletedTasks: p => dispatch(fetchCompletedTasks(p)),
+    fetchTasks: p => dispatch(fetchTasks(p)),
+    fetchEmployeeStats: p => dispatch(fetchEmployeeStats(p)),
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Dashboard)
